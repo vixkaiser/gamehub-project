@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>User Page</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(to bottom, #1d2b64, #9eb4ff);
+            color: #fff;
+            min-height: 100vh;
+            padding: 0;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px 30px;
+        }
+
+        .navbar .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .navbar .menu {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            font-weight: 500;
+            font-size: 16px;
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 30px;
+            border-radius: 10px;
+        }
+
+        h1, h2 {
+            text-align: center;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+        }
+
+        input, textarea, select {
+            width: 90%;
+            padding: 10px;
+            border-radius: 6px;
+            border: none;
+            margin-top: 5px;
+            margin-right: auto;
+            display: block;
+        }
+
+        button {
+            margin-top: 15px;
+            background: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .logout {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .logout a {
+            color: white;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<div class="navbar">
+    <div class="logo">GameHub | User Page</div>
+    <div class="menu">
+        <a href="/">Home</a>
+        <a href="/games_page">Look Games</a>
+        <a href="/add_game_form">Add/Remove Game</a>
+        <a href="/add_user_form">Add/Remove User</a>
+    </div>
+    <a href="/logout">Logout</a>
+</div>
+
+<div class="container">
+    <h1>Welcome, {{ user.name }}</h1>
+    <p style="text-align: center;"><strong>Total Play Time:</strong> {{ user.total_play_time }} hours</p>
+    <p style="text-align: center;"><strong>Average Rating:</strong> {{ user.average_rating }}</p>
+    <p style="text-align: center;"><strong>Most Played Game:</strong> {{ user.most_played_game or 'N/A' }}</p>
+
+    <div style="text-align: center;">
+        <h2>Your Comments</h2>
+        <button onclick="toggleUserComments()" style="margin-bottom: 10px; padding: 6px 12px; background-color: #444; color: white; border: none; border-radius: 5px; cursor: pointer;">
+            Show Comments
+        </button>
+    </div>
+    
+    <div id="user-comments" style="display: none; text-align: left; max-width: 600px; margin: 0 auto;">
+        {% if user.comments %}
+            <ul>
+            {% for comment in user.comments %}
+                <li><strong>{{ comment.game }}</strong>: {{ comment.text }}</li>
+            {% endfor %}
+            </ul>
+        {% else %}
+            <p style="text-align: center;">No comments yet.</p>
+        {% endif %}
+    </div>
+    
+    <h2>Play a Game</h2>
+    <form method="POST" action="/play_game">
+        <label for="game_name">Select Game:</label>
+        <select name="game_name">
+            {% for game in games %}
+            <option value="{{ game.name }}">{{ game.name }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="hours">Hours Played:</label>
+        <input type="number" name="hours" required>
+
+        <input type="hidden" name="username" value="{{ user.name }}">
+        <button type="submit">Play</button>
+    </form>
+
+    <h2>Rate a Game</h2>
+    <form method="POST" action="/rate_game">
+        <label for="game_name">Select Game:</label>
+        <select name="game_name">
+            {% for game in games %}
+            <option value="{{ game.name }}">{{ game.name }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="rating">Rating (1-5):</label>
+        <input type="number" name="rating" min="1" max="5" required>
+
+        <input type="hidden" name="username" value="{{ user.name }}">
+        <button type="submit">Rate</button>
+    </form>
+
+    <h2>Comment on a Game</h2>
+    <form method="POST" action="/comment_game">
+        <label for="game_name">Select Game:</label>
+        <select name="game_name" required>
+            <option value="" disabled selected>Select Game</option>
+            {% for game in games %}
+            <option value="{{ game.name }}">{{ game.name }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="comment">Your Comment:</label>
+        <textarea name="comment" rows="4" required></textarea>
+
+        <input type="hidden" name="username" value="{{ user.name }}">
+        <button type="submit">Submit Comment</button>
+    </form>
+
+    <div class="logout">
+        <a href="/">← Back to Home</a>
+    </div>
+</div>
+<script>
+    function toggleUserComments() {
+        const commentSection = document.getElementById('user-comments');
+        const button = event.target;
+        if (commentSection.style.display === 'none') {
+            commentSection.style.display = 'block';
+            button.innerText = 'Hide Comments';
+        } else {
+            commentSection.style.display = 'none';
+            button.innerText = 'Show Comments';
+        }
+    }
+</script>
+
+</body>
+</html>

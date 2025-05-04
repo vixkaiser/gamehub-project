@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Play Game</title>
+    <style>
+        body {
+            background: linear-gradient(to bottom, #1d2b64, #9eb4ff);
+            font-family: Arial, sans-serif;
+            color: white;
+            padding: 30px;
+        }
+        form {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 25px;
+            border-radius: 10px;
+            max-width: 500px;
+            margin: auto;
+        }
+        label {
+            display: block;
+            margin-top: 15px;
+        }
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border-radius: 5px;
+            border: none;
+        }
+        button {
+            margin-top: 20px;
+            background: #4caf50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h2 style="text-align: center;">Play Game</h2>
+    <form method="POST" action="/play_game">
+        <label for="username">Username:</label>
+        <input type="text" name="username" required>
+
+        <label for="game_name">Game Name:</label>
+        <input type="text" name="game_name" required>
+
+        <label for="hours">Hours Played:</label>
+        <input type="number" name="hours" min="1" required>
+
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

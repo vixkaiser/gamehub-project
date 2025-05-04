@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(to bottom, #1d2b64, #9eb4ff);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px 30px;
+        }
+
+        .navbar .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .navbar .menu {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            font-weight: 500;
+            font-size: 16px;
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        form {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 30px;
+            border-radius: 10px;
+            width: 300px;
+            text-align: center;
+        }
+
+        label, select, button {
+            display: block;
+            width: 100%;
+            margin-top: 15px;
+            font-size: 16px;
+        }
+
+        select, button {
+            padding: 10px;
+            border-radius: 6px;
+            border: none;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: white;
+            cursor: pointer;
+        }
+
+        .error-message {
+            color: #ff6b6b;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="navbar">
+    <div class="logo">GameHub | Login</div>
+    <div class="menu">
+        <a href="/">Home</a>
+        <a href="/games_page">Look Games</a>
+        <a href="/add_game_form">Add/Remove Game</a>
+        <a href="/add_user_form">Add/Remove User</a>
+    </div>
+</div>
+
+<div class="container">
+    <form method="POST">
+        <h2>Login</h2>
+        <label for="username">Select User:</label>
+        <select name="username" id="username" required>
+            {% for user in users %}
+                <option value="{{ user.name }}">{{ user.name }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Login</button>
+        {% if error %}
+            <div class="error-message">{{ error }}</div>
+        {% endif %}
+    </form>
+</div>
+
+</body>
+</html>

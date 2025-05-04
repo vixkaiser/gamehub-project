@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Add/Remove Game</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(to bottom, #1d2b64, #9eb4ff);
+            color: #fff;
+            min-height: 100vh;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px 30px;
+        }
+
+        .navbar .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .navbar .menu {
+            display: flex;
+            gap: 20px;
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: 500;
+        }
+
+        .form-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 40px;
+            padding: 40px;
+        }
+
+        form {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 30px;
+            border-radius: 10px;
+            width: 400px;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+        }
+
+        input {
+            width: 90%;
+            padding: 10px;
+            border-radius: 6px;
+            border: none;
+            margin-top: 5px;
+            margin-right: auto;
+            display: block;
+        }
+
+        button {
+            margin-top: 20px;
+            width: 100%;
+            background: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .remove-btn {
+            background: #e74c3c;
+        }
+
+        .back-link {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .back-link a {
+            color: white;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<div class="navbar">
+    <div class="logo">GameHub | Add/Remove Game</div>
+    <div class="menu">
+        <a href="/">Home</a>
+        <a href="/games_page">Look Games</a>
+        <a href="/add_user_form">Add/Remove User</a>
+        <a href="/login">Login</a>
+    </div>
+</div>
+
+<div class="form-container">
+    <!-- Add Game Form -->
+    <form method="POST" action="/add_game_form">
+        <h2>Add Game</h2>
+        <label for="name">Game Name:</label>
+        <input type="text" name="name" required>
+
+        <label for="genres">Genres (use , to separate):</label>
+        <input type="text" name="genres" required>
+
+        <label for="photo">Photo URL:</label>
+        <input type="text" name="photo" required>
+
+        <label for="developer">Developer Name:</label>
+        <input type="text" name="developer">
+
+        <label for="release_date">Release Date:</label>
+        <input type="text" name="release_date">
+
+        <label for="optional1">More Info:</label>
+        <input type="text" name="optional1">
+
+        <button type="submit">Add Game</button>
+    </form>
+
+    <!-- Remove Game Form -->
+    <form method="POST" action="/remove_game">
+        <h2>Remove Game</h2>
+        <label for="name">Game Name:</label>
+        <input type="text" name="name" required>
+        <button type="submit" class="remove-btn">Remove Game</button>
+    </form>
+</div>
+
+<div class="back-link">
+    <a href="/">← Back to Home</a>
+</div>
+</body>
+</html>

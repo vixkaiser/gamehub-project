@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Add/Remove User</title>
+    <style>
+        body {
+            background: linear-gradient(to bottom, #1d2b64, #9eb4ff);
+            font-family: 'Segoe UI', sans-serif;
+            color: white;
+            margin: 0;
+            padding-top: 80px;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 97%;
+            background: rgba(0, 0, 0, 0.3);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            z-index: 10;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .menu {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .menu a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: 500;
+            font-size: 16px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+        }
+
+        form {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 6px;
+            border: none;
+            margin-top: 5px;
+            box-sizing: border-box;
+        }
+
+        button {
+            margin-top: 20px;
+            background: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .remove-btn {
+            background: #e74c3c;
+        }
+
+        .back-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .back-link a {
+            color: white;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<div class="navbar">
+        <div class="logo">GameHub | Add/Remove User</div>
+        <div class="menu">
+            <a href="/">Home</a>
+            <a href="/games_page">Look Games</a>
+            <a href="/add_game_form">Add/Remove Game</a>
+            <a href="/login">Login</a>
+        </div>
+</div>
+
+<div class="container">
+    <!-- Add User Form -->
+    <form method="POST" action="/add_user_form">
+        <h2>Add User</h2>
+        <label for="name">Username:</label>
+        <input type="text" name="name" required>
+        <button type="submit">Add User</button>
+    </form>
+
+    <!-- Remove User Form -->
+    <form method="POST" action="/remove_user_form">
+        <h2>Remove User</h2>
+        <label for="name">Username:</label>
+        <input type="text" name="name" required>
+        <button type="submit" class="remove-btn">Remove User</button>
+    </form>
+
+    <div class="back-link">
+        <a href="/">← Back to Home</a>
+    </div>
+</div>
+</body>
+</html>

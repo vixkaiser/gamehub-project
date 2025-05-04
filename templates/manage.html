@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Yönetim Sayfası</title>
+    <style>
+        body {
+            background: linear-gradient(to bottom, #1d2b64, #9eb4ff);
+            font-family: Arial, sans-serif;
+            color: white;
+            padding: 40px;
+        }
+
+        .form-section {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 25px;
+            border-radius: 10px;
+            max-width: 500px;
+            margin: 30px auto;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 6px;
+            border: none;
+            margin-top: 5px;
+        }
+
+        button {
+            margin-top: 20px;
+            background: #e74c3c;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 25px;
+        }
+
+        .back-link a {
+            color: white;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 🎮 GAME DELETE -->
+    <form class="form-section" method="POST" action="/remove_game_form">
+        <h2>Oyun Sil</h2>
+        <label for="name">Oyun Adı:</label>
+        <input type="text" name="name" required>
+        <button type="submit">Sil</button>
+    </form>
+
+    <!-- 👤 USER DELETE -->
+    <form class="form-section" method="POST" action="/remove_user_form">
+        <h2>Kullanıcı Sil</h2>
+        <label for="name">Kullanıcı Adı:</label>
+        <input type="text" name="name" required>
+        <button type="submit">Sil</button>
+    </form>
+
+    <!-- 💬 ENABLE/DISABLE RATING & COMMENT -->
+    <form class="form-section" method="POST" action="/toggle_comment_form">
+        <h2>Yorum ve Puan Ayarları</h2>
+        <label for="name">Oyun Adı:</label>
+        <input type="text" name="name" required>
+
+        <label for="action">İşlem:</label>
+        <select name="action" required>
+            <option value="enable">Yorum ve Puanlamayı Aç</option>
+            <option value="disable">Yorum ve Puanlamayı Kapat</option>
+        </select>
+
+        <button type="submit">Uygula</button>
+    </form>
+
+    <div class="back-link">
+        <a href="/">← Ana Sayfa</a>
+    </div>
+
+</body>
+</html>
