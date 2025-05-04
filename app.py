@@ -504,6 +504,3 @@ def toggle_comment_form_submit():
         return f"Comments and ratings disabled for '{name}' <br><a href='/'>← Ana Sayfa</a>"
     else:
         return "Invalid action", 400
-
-if __name__ == '__main__':
-    app.run(debug=True)
